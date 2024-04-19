@@ -3,15 +3,14 @@ import gspread
 import numpy as np
 from oauth2client.service_account import ServiceAccountCredentials
 
-Auth = "D:\\Documents\\python-study\\source-codes\\scraping-yuto\\practical-day-419513-c8ed7fadd3b5.json"
+Auth = f"{os.getcwd()}/scraping-yuto/practical-day-419513-c8ed7fadd3b5.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = Auth
 scope = ['https://spreadsheets.google.com/feeds',
-         'https://www.googleapis.com/auth/drive']
+        'https://www.googleapis.com/auth/drive']
 credentials = ServiceAccountCredentials.from_json_keyfile_name(Auth, scope)
 Client = gspread.authorize(credentials)
 
 SpreadSheet = Client.open_by_url(url="https://docs.google.com/spreadsheets/d/1OW7io-YI3xWS02vnvVkbh9WmPcCDu9heiONxW7eMCaA/edit?usp=sharing")
-# SpreadSheet = Client.open_by_url(url="https://docs.google.com/spreadsheets/d/1enSgbWoK6kDz-eltbRQ9V4iRHfPD6DV_m2s3qyYcsHc/edit#gid=654293144")
 #TODO:上記のURLを共有済みのシートをgoogle spreadsheetに変更したもののURLに変更
 RawData = SpreadSheet.worksheet("PC")
 
