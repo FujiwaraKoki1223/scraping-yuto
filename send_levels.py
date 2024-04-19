@@ -1,8 +1,7 @@
 import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from scraping import get_levels
-from time import sleep
+from scraping import get_levels, get_status
 
 Auth = "D:\\Documents\\python-study\\source-codes\\scraping-yuto\\practical-day-419513-c8ed7fadd3b5.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = Auth
@@ -16,13 +15,17 @@ RawData = SpreadSheet.worksheet("PC")
 
 #スプレッドシートへ入力
 levels = get_levels()
+statuses = get_status()
 for i in range(len(levels)):
     row = i+3
-    col = 6
-    count=0
     level = levels[i].values()
     celllist = RawData.range(f"F{row}:AC{row}")
-    for n in celllist:
+    for n,count in zip(celllist,range(len(celllist))):
         n.value = int(list(level)[count]) if list(level)[count] else ""
-        count += 1
+ 
+    celllist_sta = RawData.range(f"AE{row}:AH{row}")
+    status = statuses[i].values()
+    for n,count in zip(celllist_sta,range(len(celllist_sta))):
+        n.value = int(list(status)[count]) if list(status)[count] else ""
     RawData.update_cells(celllist)
+    RawData.update_cells(celllist_sta)

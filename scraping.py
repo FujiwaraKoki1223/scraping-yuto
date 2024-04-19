@@ -1,9 +1,11 @@
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from get_from_spread import get_jobs, get_URLs
 
 levels=[]
-driver_path = "D:\\Documents\\python-study\\source-codes\\scraping-yuto\\chromedriver.exe"
+statuses=[]
+driver_path = f"{os.getcwd()}\\scraping-yuto\\chromedriver.exe"
 # brave_path（仮称）にブラウザのパスを入力
 brave_path = "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
 #TODO:上記の変数名を変更
@@ -50,3 +52,22 @@ def get_levels():
         job_levels = list(map(str,jobs.split("\n")))
         levels.append(get_level(job_levels))
     return(levels)
+
+def get_status():
+    for yuto_URL in yuto_URLs:
+        all_statuses = {}
+        key = False
+        n = 0
+        yuto.get(yuto_URL)
+        status_data = yuto.find_element(by="id", value="sub-status").text
+        status_list = list(map(str,status_data.split("\n")))
+        for i in status_list:
+            if n % 2 == 1:
+                x = i[i.find("=")+1:]
+                if x == "なし":
+                    x = ""
+                all_statuses[key] = x
+            key = i
+            n += 1
+        statuses.append(all_statuses)
+    return(statuses)

@@ -1,6 +1,5 @@
 import os
 import gspread
-import numpy as np
 from oauth2client.service_account import ServiceAccountCredentials
 
 Auth = f"{os.getcwd()}/scraping-yuto/practical-day-419513-c8ed7fadd3b5.json"
