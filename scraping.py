@@ -1,10 +1,12 @@
 import os
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from get_from_spread import get_jobs, get_URLs
 
 levels=[]
 statuses=[]
+stts=[]
 driver_path = f"{os.getcwd()}\\scraping-yuto\\chromedriver.exe"
 # brave_path（仮称）にブラウザのパスを入力
 brave_path = "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe"
@@ -53,7 +55,7 @@ def get_levels():
         levels.append(get_level(job_levels))
     return(levels)
 
-def get_status():
+def get_statuses():
     for yuto_URL in yuto_URLs:
         all_statuses = {}
         key = False
@@ -71,3 +73,17 @@ def get_status():
             n += 1
         statuses.append(all_statuses)
     return(statuses)
+
+def get_stts():
+    for yuto_URL in yuto_URLs:
+        yuto.get(yuto_URL)
+        all_stts = []
+        for stt,add in zip(["dex", "agi", "str", "vit", "int", "mnd"], ["A", "B", "C", "D", "E", "F"]):
+            stt_data = yuto.find_element(by="id", value=f"stt-{stt}")
+            stt_value = int(stt_data.find_element(By.TAG_NAME, "dd").text)
+            add_data = yuto.find_element(by="id", value=f"stt-add-{add}")
+            add_value_txt = add_data.find_element(By.TAG_NAME, "dd").text
+            add_value = int(add_value_txt) if add_value_txt else 0
+            all_stts.append(stt_value+add_value)
+        stts.append(all_stts)
+    return(stts)

@@ -1,2 +1,4 @@
-ko = [chr(i) for i in range(ord("AA"), ord("AC"))]
-print(ko)
+from scraping import get_stts
+a = get_stts()
+print("区切り")
+print(a)
