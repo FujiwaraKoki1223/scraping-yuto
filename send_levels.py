@@ -1,7 +1,7 @@
 import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from scraping import get_levels, get_statuses, get_stts
+from scraping import get_levels
 
 Auth = "D:\\Documents\\python-study\\source-codes\\scraping-yuto\\practical-day-419513-c8ed7fadd3b5.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = Auth
@@ -14,9 +14,7 @@ SpreadSheet = Client.open_by_url(url="https://docs.google.com/spreadsheets/d/1OW
 RawData = SpreadSheet.worksheet("PC")
 
 #スプレッドシートへ入力
-levels = get_levels()
-statuses = get_statuses()
-stts = get_stts()
+levels,statuses,stts = get_levels()
 for i in range(len(levels)):
     row = i+3
     level = levels[i].values()

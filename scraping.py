@@ -48,15 +48,13 @@ def get_levels():
     for yuto_URL in yuto_URLs:
         yuto.get(yuto_URL)
 
+
         #ゆとしーとの技能レベルを取得して
         jobs = yuto.find_element(by="id", value="classes").text
         #１キャラ分の技能レベルの辞書が要素で、その辞書が全キャラ分入ったリストを作成
         job_levels = list(map(str,jobs.split("\n")))
         levels.append(get_level(job_levels))
-    return(levels)
 
-def get_statuses():
-    for yuto_URL in yuto_URLs:
         all_statuses = {}
         key = False
         n = 0
@@ -72,11 +70,7 @@ def get_statuses():
             key = i
             n += 1
         statuses.append(all_statuses)
-    return(statuses)
 
-def get_stts():
-    for yuto_URL in yuto_URLs:
-        yuto.get(yuto_URL)
         all_stts = []
         for stt,add in zip(["dex", "agi", "str", "vit", "int", "mnd"], ["A", "B", "C", "D", "E", "F"]):
             stt_data = yuto.find_element(by="id", value=f"stt-{stt}")
@@ -86,4 +80,4 @@ def get_stts():
             add_value = int(add_value_txt) if add_value_txt else 0
             all_stts.append(stt_value+add_value)
         stts.append(all_stts)
-    return(stts)
+    return(levels,statuses,stts)
