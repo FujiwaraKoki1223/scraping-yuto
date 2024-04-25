@@ -3,12 +3,12 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 # from scraping import get_levels
 from get_from_spread import Auth, RawData
-from test_get import test_get_levels
+from scraping import get_levels
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = Auth
 
 #スプレッドシートへ入力
-levels = test_get_levels()
+levels,statuses,stts = get_levels()
 for i in range(len(levels)):
     row = i+3
     level = levels[i].values()
@@ -16,5 +16,11 @@ for i in range(len(levels)):
     celllist = RawData.range(f"F{row}:AC{row}")
     for n,count in zip(celllist,range(len(celllist))):
         n.value = int(list(level)[count]) if list(level)[count] else ""
+    #サブステ送信のための設定
+    celllist_sta = RawData.range(f"AE{row}:AH{row}")
+    status = statuses[i].values()
+    for n,count in zip(celllist_sta,range(len(celllist_sta))):
+        n.value = int(list(status)[count]) if list(status)[count] else ""
 
     RawData.update_cells(celllist)
+    RawData.update_cells(celllist_sta)
