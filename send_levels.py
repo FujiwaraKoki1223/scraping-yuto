@@ -2,9 +2,7 @@ import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from scraping import get_levels
-from get_from_spread import Auth, RawData
-
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = Auth
+from env import RawData
 
 #スプレッドシートへ入力
 levels,statuses,stts = get_levels()
