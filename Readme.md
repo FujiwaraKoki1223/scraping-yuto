@@ -8,3 +8,6 @@ __https://docs.google.com/spreadsheets/d/14lQd9U6Yrsa_D0h6MRkmenUjXkLVDvYyRUO3vs
 
 3.
 env.pyを開いて中にある「SpreadSheet = 」の行の「url="__page's URL__"」のpage's URLをさっき1でコピーして作ったスプレッドシートのURLに置き換える.
+
+4.
+send_levels.pyを実行
