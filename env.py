@@ -10,6 +10,6 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name(Auth, scope)
 Client = gspread.authorize(credentials)
 
 # 下の「url="~"」の~にスプレッドシートのURLを入力
-SpreadSheet = Client.open_by_url(url="https://docs.google.com/spreadsheets/d/14lQd9U6Yrsa_D0h6MRkmenUjXkLVDvYyRUO3vsi1KBU/edit?usp=sharing")
+SpreadSheet = Client.open_by_url(url="https://docs.google.com/spreadsheets/d/14lQd9U6Yrsa_D0h6MRkmenUjXkLVDvYyRUO3vsi1KBU/edit?gid=784301881#gid=784301881")
 
 RawData = SpreadSheet.worksheet("PC")
