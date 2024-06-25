@@ -41,11 +41,13 @@ def get_levels():
     for yuto_URL in yuto_URLs:
         level = []
         yuto = BeautifulSoup(requests.get(yuto_URL).content,"html.parser")
-        #ゆとしーとの技能レベルを取得して
+        
+        #技能レベルを取得
         jobs = yuto.find(id="classes")
         html_to_flat_array(jobs, level)
         levels.append(get_level(level))
 
+        #ステータスを取得
         all_statuses = {}
         key = False
         n = 0
@@ -61,7 +63,8 @@ def get_levels():
             key = i
             n += 1
         statuses.append(all_statuses)
-
+        
+        #能力値を取得
         all_stts = []
         for stt,add in zip(["dex", "agi", "str", "vit", "int", "mnd"], ["A", "B", "C", "D", "E", "F"]):
             stt_data = yuto.find(id=f"stt-{stt}")
