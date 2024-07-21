@@ -3,7 +3,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 # 下のAuthに、「practical-day-419513-c8ed7fadd3b5.json」のパスを入力
-Auth = f"{os.getcwd()}/practical-day-419513-c8ed7fadd3b5.json"
+Auth = f"{os.getcwd()}/practical-day-419513-8466aa340a55.json"
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = Auth
 scope = ['https://spreadsheets.google.com/feeds',
         'https://www.googleapis.com/auth/drive']
