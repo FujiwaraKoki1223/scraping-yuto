@@ -1,22 +1,11 @@
 import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from scraping import get_levels, get_statuses, get_stts
-
-Auth = "D:\\Documents\\python-study\\source-codes\\scraping-yuto\\practical-day-419513-c8ed7fadd3b5.json"
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = Auth
-scope = ['https://spreadsheets.google.com/feeds',
-         'https://www.googleapis.com/auth/drive']
-credentials = ServiceAccountCredentials.from_json_keyfile_name(Auth, scope)
-Client = gspread.authorize(credentials)
-SpreadSheet = Client.open_by_url(url="https://docs.google.com/spreadsheets/d/1OW7io-YI3xWS02vnvVkbh9WmPcCDu9heiONxW7eMCaA/edit?usp=sharing")
-#TODO:上記のURLを共有済みのシートをgoogle spreadsheetに変更したもののURLに変更
-RawData = SpreadSheet.worksheet("PC")
+from scraping import get_levels
+from env import RawData
 
 #スプレッドシートへ入力
-levels = get_levels()
-statuses = get_statuses()
-stts = get_stts()
+levels,statuses,stts = get_levels()
 for i in range(len(levels)):
     row = i+3
     level = levels[i].values()
