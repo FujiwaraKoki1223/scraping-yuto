@@ -13,23 +13,26 @@ env.pyを開いて中にある「SpreadSheet = 」の行の「url="__page's URL_
 venvファイルを削除
 
 5.
-`python3 -m venv 任意のファイル名`
+`python3 -m venv venv(任意のファイル名でおk)`
 を実行
 
 6.
 windowsなら
 `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force`
 で設定を緩くした後、
-`.\venv\Scripts\Activate.ps1`
+`.\venv（先ほどのファイル名）\Scripts\Activate.ps1`
 などでActivate.ps1を実行
 
 macなら
-`.\venv\Scripts\Activate.ps1`
-などでActivate.ps1を実行だけ
+`. .\venv\Scripts\Activate`
+などでActivateを実行するだけ
 
 7.
 `pip install -r requirements.txt`
 を実行
 
 8.
+インタープリターの設定などを各々行って作った仮想環境で動作するようにする
+
+9.
 send_levels.pyを実行
