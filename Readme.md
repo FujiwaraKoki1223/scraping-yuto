@@ -24,7 +24,7 @@ windowsなら
 などでActivate.ps1を実行
 
 macなら
-`. .\venv\Scripts\Activate`
+`. ./venv/Scripts/Activate`
 などでActivateを実行するだけ
 
 7.
