@@ -20,11 +20,11 @@ venvファイルを削除
 windowsなら
 `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force`
 で設定を緩くした後、
-`.\venv（先ほどのファイル名）\Scripts\Activate.ps1`
+`.\venv(先ほどのファイル名)\Scripts\Activate.ps1`
 などでActivate.ps1を実行
 
 macなら
-`. ./venv/Scripts/Activate`
+`. ./venv/bin/Activate`
 などでActivateを実行するだけ
 
 7.
