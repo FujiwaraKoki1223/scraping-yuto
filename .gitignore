@@ -1,2 +1,4 @@
 .env.py
 practical-day-419513-8466aa340a55.json
+venv/
+__pycache__
